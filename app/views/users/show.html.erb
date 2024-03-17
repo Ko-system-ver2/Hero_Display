@@ -1,0 +1,129 @@
+<!-- ユーザーページ -->
+
+<% if @user.id == current_user.id %>
+    <section class="hero is-info">  <div class="hero-body">
+            <div class="container">
+            <h1 class="title">
+                マイページ
+            </h1>
+            </div>
+        </div>
+    </section>
+
+<% else %>
+    <section class="hero is-info">  <div class="hero-body">
+            <div class="container">
+            <h1 class="title">
+                ユーザーページ
+            </h1>
+            </div>
+        </div>
+    </section>
+
+<% end %>
+
+<section class="section">
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-8">
+                <div class="columns is-centered">
+                    <!-- プロフィール画像 -->
+                    <div class="column is-4">
+                        <figure class="image is-130x130" style="margin-left: auto; margin-right: auto;">
+                            <%= attachment_image_tag @user, :profile_image, :fill, 200, 200, fallback: "no-image.png", class: "profile_image is-rounded" %>
+                        </figure>
+                    </div>
+
+                    <!-- プロフィール -->
+                    <div class="column is-8">
+                        <table class="table is-fullwidth">
+                            <tr>
+                                <td class="is-size-3">
+                                    <strong><%= @user.username %></strong>
+                                </td>
+                                <% if @user.id == current_user.id %>
+                                    <td>
+                                        <ul>
+                                            <li class="is-size-3" style="margin: 0 0 10px 0;">
+                                                <%= link_to "プロフィール編集", edit_user_path(@user), class: "button is-primary" %>
+                                            </li>
+                                            <li class="is-size-3">
+                                                <%= link_to "アカウント設定", edit_user_registration_path(@user), class: "button is-primary" %>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                <% end %>
+                            </tr>
+                        </table>
+                        <!-- プロフィール文 -->
+                        <table class="table is-fullwidth">
+                            <tr>
+                                <td>
+                                    <%= @user.profile %>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="columns is-multiline">
+            <% @user.collections.each do |collection| %>
+                <div class="column is-4">
+                    <div class="card">
+
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                                <%= link_to collection_path(collection) do %>
+                                    <%= attachment_image_tag collection, :image, fallback: "no-image.png"  %>
+                                <% end %>
+                            </figure>
+                        </div>
+
+                        <div class="card-content">
+                            <div class="media">
+                                <div class="media-content">
+                                    <%= link_to collection_path(collection), class: "panel-block" do %>
+                                        <span class="panel-icon">
+                                            <i class="fas fa-book" aria-hidden="true"></i>
+                                        </span>
+                                        この作品を見る
+                                    <% end %>
+
+                                    <% if @user.id == current_user.id %>
+                                        <%= link_to edit_collection_path(collection), class: "panel-block" do %>
+                                            <span class="panel-icon">
+                                                <i class="fas fa-edit"></i>
+                                            </span>
+                                            この作品を編集する
+                                        <% end %>
+
+                                        <%= link_to collection_path(collection), data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？"}, class: "panel-block" do %>
+                                            <span class="panel-icon">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                            この作品を削除する
+                                        <% end %>
+                                    <% end %>
+                                </div>
+                            </div>
+
+                            <div class="content">
+                                <time><%= collection.updated_at.strftime("%Y-%m-%d %H:%M") %></time>更新
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</section>
+
+<%= render "devise/shared/footer" %>
+
+<!--  -->

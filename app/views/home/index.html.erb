@@ -1,0 +1,87 @@
+<section class="section">
+    <article class="media">
+        <div class="media-content">
+            <% if user_signed_in? %>
+                <div class="content has-text-centered">
+                    <p>
+                        <strong class="is-size-1" style="font-family: Comic Sans MC;">Hero Display</strong><br>
+                        <strong class="is-size-3"> きみのヒーローコレクションを紹介しよう！</strong>
+                    </p>
+                </div>
+                <div class="columns is-centered">
+                    <div class="column is-5">
+                        <br>
+                        
+                    </div>
+                </div>
+            <% else %>
+                <div class="content has-text-centered">
+                    <p>
+                        <strong class="is-size-1" style="font-family: Comic Sans MC;">Hero Display<strong><br>
+                        <strong class="is-size-3"> へようこそ！</strong>
+                    </p>
+                </div>
+                <div class="columns is-centered">
+                    <div class="column is-5">
+                        <br>
+                        <%= link_to "ログイン", new_user_session_path, class: "button is-dark is-fullwidth" %>
+                        <br>
+                        <%= link_to "新規登録", new_user_registration_path, class: "button is-primary is-fullwidth" %>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </article>
+</section>
+
+<section class="section">
+    <div class="container border bg-info" style="padding-top: 30px; max-width: 1000px; margin-bottom: 100px;">
+        <div class="detail has-text-centered">
+            <!-- カメラの画像 -->
+            <div>
+                <i class="fas fa-camera" style="font-size: 150px;"></i>
+            </div>
+            <!-- 説明文 -->
+            <div class="passage-1" style="margin-top: 10px;">
+                <strong>
+                    ヒーローコレクションの<br>
+                    写真を撮って
+                </strong>
+            </div>
+        </div>
+    </div>
+
+    <div class="container border bg-primary" style="padding-top: 30px; max-width: 1000px; margin-bottom: 100px;">
+        <div class="detail has-text-centered">
+            <!-- 写真投稿の画像 -->
+            <div>
+                <i class="fas fa-upload" style="font-size: 150px;"></i>
+            </div>
+            <!-- 説明文 -->
+            <div class="passage-2" style="margin-top: 30px;">
+                <strong>
+                    投稿するだけ！
+                </strong>
+            </div>
+        </div>
+    </div>
+
+    <div class="container border bg-warning" style="padding-top: 40px; max-width: 1000px; margin-bottom: 50px;">
+        <div class="detail has-text-centered">
+            <!-- 評価の画像 -->
+            <div>
+                <i class="fas fa-heart" style="font-size: 150px;"></i>
+            </div>
+            <!-- 説明文 -->
+            <div  class="passage-3" style="margin-top: 30px;">
+                <strong>
+                    他のユーザーの作品の<br>
+                    評価もできる！
+                </strong>
+            </div>
+        </div>
+    </div>
+</section>
+
+<%= render "devise/shared/footer" %>
+<!--  -->

@@ -1,0 +1,26 @@
+<footer class="footer bg-secondary">
+    <div class="brand has-text-centered">
+        <%= link_to root_path do %>
+            <h1 class="title is-4" style="color: white; font-family: Comic Sans MC;">Hero Display</h1>
+        <% end %>
+    </div>
+
+    <div style="text-align: center; color: white;">
+        <ul style="list-style: none;">
+            <%= link_to home_terms_path do %>
+                <li style="margin: 20px; color: white; display: inline-block; font-size: 20px;">
+                    利用規約
+                </li>
+            <% end %>
+
+            <%= link_to home_help_path do %>
+                <li style="margin: 20px; color: white; display: inline-block; font-size: 20px;">
+                    ヘルプ
+                </li>
+            <% end %>
+
+        </ul>
+
+        <p style="font-size: 30px; ">© Hero Display</p>
+    </div>
+</footer>

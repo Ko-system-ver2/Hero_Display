@@ -1,0 +1,87 @@
+<section class="hero is-info">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        アカウント設定
+      </h1>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-5">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+
+          <div class="field">
+            <%= f.label :メールアドレス（記入必須）, class: "label" %>
+            <p class="control has-icons-left">
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder => "メールアドレス", class: "input" %>
+              <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+              </span>
+            </p>
+          </div>
+
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <% end %>
+
+          <div class="field">
+            <%= f.label :新パスワード, class: "label" %> <i>(パスワードを変更しない場合は空白で構いません)</i>
+            <p class="control has-icons-left">
+              <%= f.password_field :password, autocomplete: "new-password", :placeholder => "新パスワード", class: "input" %>
+              <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+              </span>
+            </p>
+            <% if @minimum_password_length %>
+            <em>(最小 <%= @minimum_password_length %> 文字)</em>
+            <% end %>
+          </div>
+
+          <div class="field">
+            <%= f.label :新パスワード（確認用）, class: "label" %>
+            <p class="control has-icons-left">
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", :placeholder => "新パスワード（確認用）", class: "input" %>
+              <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+              </span>
+            </p>
+          </div>
+
+          <div class="field">
+            <%= f.label :旧パスワード（記入必須）, class: "label" %>
+            <p class="control has-icons-left">
+              <%= f.password_field :current_password, autocomplete: "current-password", :placeholder => "旧パスワード", class: "input" %>
+              <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+              </span>
+            </p>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "更新", class: "button is-primary" %>
+          </div>
+        <% end %>
+
+        <br>
+        <br>
+        <strong class="is-">退会</strong>
+        <br>
+        <br>
+        <%= button_to "退会する", registration_path(resource_name), data: { confirm: "本当に退会しますか？" }, method: :delete, class:"button is-danger" %>
+
+        <br>
+        <br>
+        <%= link_to "戻る", :back, class:"button is-info" %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%= render "devise/shared/footer" %>
+
+<!--  -->
